@@ -1,0 +1,20 @@
+movieID	personID	name	role
+tt0034583	nm0000007	Humphrey Bogart	Rick Blaine
+tt0034583	nm0000006	Ingrid Bergman	Ilsa Lund
+tt0035446	nm0001479	Carole Lombard	Maria Tura
+tt0039689	nm0000053	Robert Mitchum	Jeff
+tt0039689	nm0000018	Kirk Douglas	Whit
+tt0042593	nm0000007	Humphrey Bogart	Dixon Steele
+tt0050825	nm0000018	Kirk Douglas	Col. Dax
+tt0053291	nm0000348	Tony Curtis	Joe
+tt0053291	nm0000348	Tony Curtis	Josephine
+tt0053291	nm0000054	Marilyn Monroe	Sugar Kane Kowalczyk
+tt0053291	nm0000493	Jack Lemmon	Jerry
+tt0053604	nm0000493	Jack Lemmon	C.C. Baxter
+tt0053604	nm0000511	Shirley MacLaine	Fran Kubelik
+tt0062136	nm0004244	Jacques Tati	Monsieur Hulot
+tt0064116	nm0000020	Henry Fonda	Frank
+tt0074958	nm0001159	Faye Dunaway	Diana Christensen
+tt0078788	nm0000008	Marlon Brando	Colonel Walter E. Kurtz
+tt0087884	nm0001765	Harry Dean Stanton	Travis Henderson
+tt0166924	nm0915208	Naomi Watts	Diane Selwyn
