@@ -1,0 +1,20 @@
+movieID	locationListing	rawAddress	city	state	country
+tt0034583	Yuma, Arizona, USA	Yuma, Yuma County, Arizona, United States	Yuma	Arizona	United States
+tt0034583	Flagstaff, Arizona, USA	Flagstaff, Coconino County, Arizona, United States	Flagstaff	Arizona	United States
+tt0039689	Los Angeles, California, USA	Los Angeles, Los Angeles County, California, United States	Los Angeles	California	United States
+tt0039689	Reno, Nevada, USA	Reno, Washoe County, Nevada, United States	Reno	Nevada	United States
+tt0042593	Los Angeles, California, USA	Los Angeles, Los Angeles County, California, United States	Los Angeles	California	United States
+tt0050825	Munich, Bavaria, Germany	Munich, Bavaria, Germany	Munich	Bavaria	Germany
+tt0053604	205 Columbus Avenue, New York City, New York, USA	205, Columbus Avenue, Upper West Side, Manhattan Community Board 7, Manhattan, New York County, New York, 10023, United States	New York	New York	United States
+tt0053604	59th Street, Manhattan, New York City, New York, USA	59th Street, Lexington Avenue, Upper East Side, Manhattan Community Board 8, Manhattan, New York County, New York, 10037, United States	New York	New York	United States
+tt0074958	New York City, New York, USA	New York, United States	New York	New York	United States
+tt0078788	Dominican Republic	Dominican Republic	San Francisco de Macorís	Duarte	Dominican Republic
+tt0078788	Napa Valley, California, USA	Napa, Napa County, California, United States	Napa	California	United States
+tt0087884	El Paso International Airport - 6701 Convair Road, El Paso, Texas, USA	El Paso International Airport, Convair Road, El Paso, El Paso County, Texas, 79925, United States	El Paso	Texas	United States
+tt0087884	Four Corners, California, USA	Four Corners, Concord, Contra Costa County, California, 94519, United States	Concord	California	United States
+tt0087884	Galveston, Texas, USA	Galveston, Galveston County, Texas, United States	Galveston	Texas	United States
+tt0087884	Houston, Texas, USA	Houston, Harris County, Texas, United States	Houston	Texas	United States
+tt0087884	San Fernando Valley, Los Angeles, California, USA	San Fernando Valley, Los Angeles, Los Angeles County, California, 91406-1232, United States	Los Angeles	California	United States
+tt0166924	Hollywood Hills, Los Angeles, California, USA	Hollywood Hills, Los Angeles, Los Angeles County, California, United States	Los Angeles	California	United States
+tt0166924	Mulholland Drive, Hollywood Hills, Los Angeles, California, USA	Mulholland Drive, Hollywood Hills, Los Angeles, Los Angeles County, California, 90068-1106, United States	Los Angeles	California	United States
+tt0166924	Downtown, Los Angeles, California, USA	Downtown, Los Angeles, Los Angeles County, California, United States	Los Angeles	California	United States
