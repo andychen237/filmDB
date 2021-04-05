@@ -1,6 +1,3 @@
-DROP TABLE IF EXISTS Movie;
-
--- Describe schema for relation Movie
 CREATE TABLE Movie (
   movieID   VARCHAR(15),
   title     VARCHAR(300),
@@ -17,8 +14,3 @@ LOAD DATA LOCAL INFILE 'C:/Users/andyc/Documents/Johns Hopkins/Spring 2021/Datab
 FIELDS TERMINATED BY '\t'
 LINES TERMINATED BY '\n'
 IGNORE 1 LINES;
-
--- test query
-SELECT *
-FROM Movie
-WHERE title = 'Pickup on South Street';
