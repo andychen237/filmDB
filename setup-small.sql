@@ -44,18 +44,22 @@ CREATE TABLE Person (
 CREATE TABLE DirectedBy (
   personID  VARCHAR(15),
   movieID   VARCHAR(15),
+  name      VARCHAR(200),
   PRIMARY KEY(personID, movieID),
   FOREIGN KEY(personID) REFERENCES Person(personID),
-  FOREIGN KEY(movieID) REFERENCES Movie(movieID)
+  FOREIGN KEY(movieID) REFERENCES Movie(movieID),
+  FOREIGN KEY(name) REFERENCES Person(name)
 );
 
 CREATE TABLE Starring (
   personID  VARCHAR(15),
   movieID   VARCHAR(15),
+  name      VARCHAR(200),
   role      VARCHAR(200),
   PRIMARY KEY(personID, movieID, role),
   FOREIGN KEY(personID) REFERENCES Person(personID),
-  FOREIGN KEY(movieID) REFERENCES Movie(movieID)
+  FOREIGN KEY(movieID) REFERENCES Movie(movieID),
+  FOREIGN KEY(name) REFERENCES Person(name)
 );
 
   
