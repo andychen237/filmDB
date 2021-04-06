@@ -1,0 +1,20 @@
+movieID	keyword
+tt0053604	new york
+tt0053604	new year's eve
+tt0053604	lovesickness
+tt0053604	age difference
+tt0053604	suicide attempt
+tt0074958	corruption
+tt0074958	adultery
+tt0074958	television
+tt0078788	guerilla
+tt0078788	vietnam
+tt0078788	vietcong
+tt0078788	cambodia
+tt0087884	regret
+tt0087884	texas
+tt0166924	schizophrenia
+tt0166924	identity
+tt0166924	amnesia
+tt0166924	loss of sense of reality
+tt0166924	suppressed past
