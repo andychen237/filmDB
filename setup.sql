@@ -1,7 +1,6 @@
 -- Andy Chen, achen93
 -- Curtis Nishimoto, cnishim1
 
-
 CREATE TABLE Movie (
   movieID   VARCHAR(15),
   title     VARCHAR(300),
