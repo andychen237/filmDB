@@ -1,0 +1,57 @@
+Andy Chen, achen93
+Curtis Nishimoto, cnishim1
+
+All the data cleaning was done through Python using pandas dataframes. 
+Feel free to refer to this link for the exact code: 
+https://github.com/andychen237/filmDB/blob/main/databases_cleanup.ipynb
+
+For movie, genre, directedby, person and starring, the information was obtained from
+https://datasets.imdbws.com/, all being tsv files.
+
+Specifically, movies was read from the title.basics data from IMDB. 
+It was filtered so the titleType category was movie and the isAdult boolean was 0 (indicating non-adult films).
+Then these categories, along with the originalTitle and the endYear (usually reserved 
+for TV shows) were removed and the remaining desired attributes were renamed to fit
+the schema specified in Phase C. 
+
+For genres, the Genre category in Movies was split using commas to denote each individual 
+genre a movie can have and any null values were dropped.
+
+After dropping genres from the original movie data, budget/revenue and keywords data was read through a kaggle dataset
+(https://www.kaggle.com/juzershakir/tmdb-movies-dataset; csv file). The budget was merged with movie 
+to fill in any values of budget/revenue that were available in the dataset. Missing values were simply
+treated as null values. 
+
+For keywords, a similar procedure was done, the keywords were merged with the movie
+data so only the movies that have keywords are represented and the movies represented were restricted to those within the movie data.
+Then similar to genres, the keywords were split using '|' to denote a tuple for each keyword a film can have.
+Duplicates were dropped. 
+
+For the person data, the data was taken from name.basics from IMDB. The deathYear, primaryProfession, and knownForTitles
+were dropped, and the columns were renamed to fit the attributes specified in Phase B.
+
+Starring was taken from tile.principals from IMDB. For starring, the only categories of interest were those that were
+actors or actresses, so other professions were filtered out. Since actors can play multiple roles and they were listed as a list
+under the 'characters' category, the string was fixed to be comma separated (removing quotes between character names and brackets),
+and then split to different rows for each character an actor played. Rows with roles with NULL values were also dropped.
+
+For directedby, the data was taken from title.crew from IMDB. Writers were filtered out and only movies represented in the original
+movie title were kept (done through a merge with 'movies'). For movies with multiple directors (separated by commas), they were
+split into different rows.
+
+Since there were around 17 million people represented in the IMDB data, this was filtered to just only contain
+the people who were in directedby or starring to reduce the size. This reduced the file size from 300mb to around 
+20mb and from 17 million rows to 600k rows. 
+
+For movie locations, the data was obtained from https://github.com/HindrikStegenga/IMDB-Location.list-Parser/blob/master/movies.csv.
+The csv file was converted from using commas as separators to using '|' as separators to prevent confusion since addresses included
+commas. The data was merged with movies to only include the movies filtered through the source data. Since the location listings were
+inconsistent (varied from having city, address, and/or country, etc), the location listing was separated into four components: raw address, a city, state, and a country
+using geocoding python packages (geopy) to have consistency and to represent the information that is actually available for each movie for better
+comparison. Existing tabs in the location listings were also removed to prevent conflict with the tsv of the result file.
+
+For ranking data, the data was exported as a csv file from an IMDB list that displayed the ranking from a site theyshootpictures.com (https://www.imdb.com/list/ls084497023/).
+This was done to get the IMDB ID's. Then columns were renamed and only the ID and list position were kept. Shorts were also removed, since feature lengths are
+the focus of this project. 
+ 
+Any blank or null values were made to be defined as '\N' to prevent type errors.

@@ -19856,10 +19856,6 @@ tt0411951	martial arts
 tt0411951	dystopia
 tt0411951	based on video game
 tt0411951	martial arts tournament
-tt0411951	martial arts
-tt0411951	dystopia
-tt0411951	based on video game
-tt0411951	martial arts tournament
 tt0412019	bachelor
 tt0412019	ex-boyfriend
 tt0412019	ex-girlfriend
