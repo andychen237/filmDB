@@ -12,7 +12,7 @@ Also error handling in SQL was tough since little details were important to keep
 (f.e., NULL, NaN, or blank values were interpretted as strings so error messages arose 
 if they were loaded in as any type besides chars; return values also converted
 fields into strings, etc), so this took quite a bit of time debugging.
-Thankfully evenutally everything was miraculously able to loaded into SQL (at 30 mins time)
+Thankfully evenutally everything was miraculously able to loaded into SQL (at 5 mins time)
 and most of the warnings were duplicates/foreign key restraints, which were easily fixable and didn't require meticulously
 parsing through the data to find the exact row of some odd error.
 
