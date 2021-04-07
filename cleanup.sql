@@ -1,3 +1,6 @@
+-- Andy Chen, achen93
+-- Curtis Nishimoto, cnishim1
+
 DROP TABLE IF EXISTS Ranking;
 DROP TABLE IF EXISTS ShootingLocation;
 DROP TABLE IF EXISTS Starring;
