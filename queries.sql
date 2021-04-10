@@ -23,3 +23,13 @@ SELECT title, year, revenue - budget AS gross
 FROM Movie
 WHERE revenue IS NOT NULL AND budget IS NOT NULL
 ORDER BY gross desc;
+
+--Most prevalent genre overall--
+WITH GenreCount AS (SELECT genre, COUNT(genre) AS count
+        FROM Genre
+        GROUP BY genre)
+SELECT genre, MAX(count)
+FROM GenreCount
+GROUP BY genres
+ORDER BY MAX(count) desc
+LIMIT 1;
