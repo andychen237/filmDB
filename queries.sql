@@ -1,4 +1,4 @@
-
+-- Most popular genres per decade (incomplete)--
 WITH MovieDecades AS (SELECT movieID, title, CAST(year / 10 AS INT) AS decade
         FROM Movie),
         GenreDecades AS (SELECT M.movieID, M.title, M.decade, G.genre
@@ -11,9 +11,15 @@ SELECT decade, genre, MAX(count)
 FROM DecadeCount
 GROUP BY decade, genre;
 
-
+--Top ten movies in revenue(Adjusted)--
 SELECT title, year, revenue, revenue_adj
 FROM Movie
 WHERE revenue IS NOT NULL AND revenue_adj IS NOT NULL
 ORDER BY revenue_adj desc
 LIMIT 10;
+
+--Top ten movies by profit (not adjusted)--
+SELECT title, year, revenue - budget AS gross
+FROM Movie
+WHERE revenue IS NOT NULL AND budget IS NOT NULL
+ORDER BY gross desc;
