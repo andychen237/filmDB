@@ -1,4 +1,4 @@
---What have been the most prevalent genres of each decade? (incomplete)
+
 WITH MovieDecades AS (SELECT movieID, title, CAST(year / 10 AS INT) AS decade
         FROM Movie),
         GenreDecades AS (SELECT M.movieID, M.title, M.decade, G.genre
@@ -10,3 +10,10 @@ WITH MovieDecades AS (SELECT movieID, title, CAST(year / 10 AS INT) AS decade
 SELECT decade, genre, MAX(count)
 FROM DecadeCount
 GROUP BY decade, genre;
+
+
+SELECT title, year, revenue, revenue_adj
+FROM Movie
+WHERE revenue IS NOT NULL AND revenue_adj IS NOT NULL
+ORDER BY revenue_adj desc
+LIMIT 10;
