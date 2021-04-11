@@ -44,3 +44,11 @@ SELECT M1.decade * 10, (SELECT SUM(M.revenue)
 FROM MovieDecades AS M1
 GROUP BY M1.decade;
 
+--Revenue per year--
+SELECT M.year, (SELECT SUM(revenue) AS profit 
+        FROM Movie AS M1
+        WHERE M1.year = M.year AND M1.revenue IS NOT NULL)
+FROM Movie AS M
+WHERE M.revenue IS NOT NULL
+ORDER BY M.year;
+
