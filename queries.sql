@@ -62,3 +62,10 @@ FROM Movie AS M
 WHERE M.revenue IS NOT NULL
 ORDER BY M.year;
 
+--Common Roles--
+SELECT role, COUNT(role) AS appearances
+FROM Starring
+GROUP BY role
+ORDER BY COUNT(role) desc
+LIMIT 10;
+
