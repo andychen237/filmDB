@@ -33,3 +33,14 @@ FROM GenreCount
 GROUP BY genres
 ORDER BY MAX(count) desc
 LIMIT 1;
+
+--Revenue per decade--
+WITH MovieDecades AS (SELECT movieID, revenue, FLOOR(year / 10) AS decade
+        FROM Movie
+        WHERE revenue IS NOT NULL)
+SELECT M1.decade * 10, (SELECT SUM(M.revenue) 
+        FROM MovieDecades AS M
+        WHERE M.decade = M1.decade)
+FROM MovieDecades AS M1
+GROUP BY M1.decade;
+
