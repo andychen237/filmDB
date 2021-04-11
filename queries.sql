@@ -44,6 +44,16 @@ SELECT M1.decade * 10, (SELECT SUM(M.revenue)
 FROM MovieDecades AS M1
 GROUP BY M1.decade;
 
+--Ten least profitable films--
+WITH PercentProfit AS (SELECT title, ((revenue / budget) * 100) AS percent
+        FROM Movie
+        WHERE budget IS NOT NULL AND revenue IS NOT NULL)
+SELECT title, percent 
+FROM PercentProfit
+WHERE percent < 75
+ORDER BY percent ASC
+LIMIT 10;
+
 --Revenue per year--
 SELECT M.year, (SELECT SUM(revenue) AS profit 
         FROM Movie AS M1
