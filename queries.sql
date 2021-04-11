@@ -1,5 +1,5 @@
 -- Most popular genres per decade (incomplete)--
-WITH MovieDecades AS (SELECT movieID, title, CAST(year / 10 AS INT) AS decade
+WITH MovieDecades AS (SELECT movieID, title, FLOOR(year / 10) AS decade
         FROM Movie),
         GenreDecades AS (SELECT M.movieID, M.title, M.decade, G.genre
         FROM Genre AS G JOIN MovieDecades AS M ON M.movieID = G.movieID
