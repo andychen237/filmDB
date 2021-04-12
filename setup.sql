@@ -6,10 +6,10 @@ CREATE TABLE Movie (
   title     VARCHAR(300),
   year      INT,
   runtime   INT,
-  budget    DECIMAL(19,4),
-  revenue   DECIMAL(19,4),
-  budget_adj    DECIMAL(19,4),
-  revenue_adj   DECIMAL(19,4),
+  budget    DECIMAL(19,2),
+  revenue   DECIMAL(19,2),
+  budget_adj    DECIMAL(19,2),
+  revenue_adj   DECIMAL(19,2),
   PRIMARY KEY(movieID)
 );
 
