@@ -130,19 +130,8 @@ FROM RankGenres as R1
 WHERE rank = (SELECT min(rank) FROM RankGenres as R2 WHERE R1.genre = R2.genre)
 GROUP BY Genre;
 
--- Top 20 directors with most appearances in greatest film list
--- Preview of Results: Jean-Luc Godard, John Ford, Ingmar Bergman, Alfred Hitchcock
--- Fritz Lang, Woody Allen, Martin Scorsese, Howard Hawks, Luis Bunuel
-With TopDirectors AS (SELECT personID, movieID
-FROM Ranking JOIN DirectedBy USING (movieID))
-SELECT Name, Count(movieID) as 'Number of films'
-FROM TopDirectors JOIN Person USING (personID)
-GROUP BY Name
-ORDER BY count(movieID) DESC
-LIMIT 20;
-
 -- Top 20 directors with most appearances in greatest film list (along with their greatest film)
--- Preview of Results: John-Luc Godard (Breathless), John Ford (The Searchers), ALfred Hitchcock (Vertigo)
+-- Preview of Results: 1) John-Luc Godard (Breathless), 2) John Ford (The Searchers), 3) ALfred Hitchcock (Vertigo)
 With TopDirectors AS (SELECT personID, movieID, rank, title, Year
 FROM RankDetailed JOIN DirectedBy USING (movieID)),
 TopDirectorsCount AS (SELECT Name, personID, Count(DISTINCT movieID) as Count
@@ -155,7 +144,7 @@ FROM (SELECT * FROM TopDirectors JOIN TopDirectorsCount USING (personID)) AS T1
 WHERE rank = (SELECT min(rank) FROM (SELECT * FROM TopDirectors JOIN TopDirectorsCount USING (personID)) AS T2 WHERE T1.personID = T2.personID);
 
 -- Top 20 actors with most appearances in greatest film list (along with their greatest film)
--- Preview of Results: Robert De Niro (Taxi Driver), John Wayne (The Searchers), James Stewart (Vertigo), Cary Grant (North by Northwest)
+-- Preview of results: 1) Robert De Niro (Taxi Driver), 2) John Wayne (The Searchers), 3) James Stewart (Vertigo), 4) Cary Grant (North by Northwest)
 With TopActors AS (SELECT personID, movieID, rank, title, Year
 FROM RankDetailed JOIN Starring USING (movieID)),
 TopActorsCount AS (SELECT Name, personID, Count(DISTINCT movieID) as Count
@@ -168,9 +157,9 @@ FROM (SELECT * FROM TopActors JOIN TopActorsCount USING (personID)) AS T1
 WHERE rank = (SELECT min(rank) FROM (SELECT * FROM TopActors JOIN TopActorsCount USING (personID)) AS T2 WHERE T1.personID = T2.personID);
 
 -- Top ranked film per decade
--- Results: 1910: True Heart Susie, 1920: Sunrise, 1930: The Rules of the Game, 1940: Citizen Kane,
--- 1950: Vertigo, 1960: 2001: A Space Odyssey, 1970: The Godfather, 1980: Raging Bull, 1990: Goodfellas,
--- 2000: In the Mood for Love, 2010: Under the Skin
+-- Results: 1910: Intolerance, 1920: Sunrise, 1930: The Rules of the Game, 1940: Citizen Kane,
+-- 1950: Vertigo, 1960: 2001: A Space Odyssey, 1970: The Godfather, 1980: Raging Bull, 1990: Pulp Fiction,
+-- 2000: In the Mood for Love, 2010: The Tree of Life
 SELECT Decade, Title, Year
 FROM RankDetailed as R1
 WHERE rank = (SELECT min(rank) FROM RankDetailed as R2 WHERE R1.decade = R2.decade)
@@ -205,6 +194,7 @@ WHERE Position <= 3 AND COUNT >= 2;
 -- Queries about budget/revenue
 
 -- Top ten movies in revenue (adjusted)
+-- Preview of results: 1) Avatar, 2) Star Wars: A New Hope, 3) Titanic, 4) The Exorcist, 5) Jaws
 SELECT Title, Year, CONCAT('$', CAST(Revenue AS VARCHAR(20))) AS 'Revenue', CONCAT('$', CAST(Revenue_adj AS VARCHAR(20))) AS 'Adjusted Revenue'
 FROM Movie
 WHERE revenue IS NOT NULL AND revenue_adj IS NOT NULL
@@ -212,6 +202,7 @@ ORDER BY revenue_adj desc
 LIMIT 10;
 
 -- Top ten movies by profit (not adjusted)
+-- Preview of results: 1) Avatar, 2) Star Wars: A New Hope, 3) Titanic, 4) Jurassic World, 5) Furious 7
 SELECT Title, Year, CONCAT('$', CAST(Budget AS VARCHAR(20))) AS 'Budget', CONCAT('$', CAST(Revenue AS VARCHAR(20))) AS 'Revenue', CONCAT('$',CAST(revenue - budget AS VARCHAR(20))) AS Gross
 FROM Movie
 WHERE revenue IS NOT NULL AND budget IS NOT NULL
@@ -227,7 +218,7 @@ ORDER BY (revenue - budget)/(budget) desc
 LIMIT 10;
         
 -- Top 10 Box Office Bombs
--- Result: 1) Chaos (2005), 2) 5 Days of War (2011), 3) Foodfight! (2011), 4) The Good Night (2007), 5) Cherry 2000 (1987)
+-- Results: 1) Chaos (2005), 2) 5 Days of War (2011), 3) Foodfight! (2011), 4) The Good Night (2007), 5) Cherry 2000 (1987)
 With PercentProfit AS (SELECT title as Title, movieID, year as Year, budget as Budget, revenue as Revenue, ((revenue / budget) * 100) AS Percent
         FROM Movie
         WHERE budget > 10000 AND revenue > 10000)
