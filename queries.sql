@@ -7,7 +7,7 @@ FROM Movie JOIN Ranking USING (movieID));
 
 -- Queries about shooting location
 
--- Top 10 cities most filmed at
+-- 1. Top 10 cities most filmed at
 -- Result: 1) LA, US, 2) NY, US, 3) Westminster, UK 4) Paris, France 5) Berlin, Germany
 -- 6) Toronto, CA 7) SF, US 8) London, UK 9) Chicago, US 10) Rome, Italy
 SELECT City, Country, count(city) as 'Number of films'
@@ -17,13 +17,13 @@ GROUP BY city
 ORDER BY count(city) DESC
 LIMIT 10;
 
--- Top ranked films movies shot in Baltimore, MD
+-- 2. Top ranked films movies shot in Baltimore, MD
 -- Result: 1) Pink Flamingos (1972), 2) Female Trouble (1974)
 SELECT DISTINCT Title, Year
 FROM Movie JOIN (Ranking as R JOIN (SELECT movieID FROM ShootingLocation WHERE City = 'Baltimore') AS S USING (movieID)) USING (movieID)
 ORDER BY Rank ASC;
 
--- Films shot at Johns Hopkins University
+-- 3. Films shot at Johns Hopkins University
 -- Result: Mondo Trasho (1969), Desperate Living (1977), Dead Man's Curve (1998), 
 -- The Social Network (2010), Four Corners (2012), Chennai Serial Killer (2015)
 SELECT Title, Year
@@ -31,7 +31,7 @@ FROM Movie JOIN (SELECT movieID
 FROM ShootingLocation
 WHERE locationListing LIKE '%Johns Hopkins%') as JH USING (movieID);
 
--- Films with most countries as shooting locations
+-- 4. Films with most countries as shooting locations
 -- Result: 1) To the Top (2016) (36), Samsara (2011) (26), Baraka (1992) (24), The Fall (2006) (21), World Safari (1977) (20)
 SELECT Title, Year, count as 'Number of countries'
 FROM (SELECT movieID, count(DISTINCT country) as count
@@ -40,7 +40,7 @@ GROUP BY movieID
 ORDER BY count(DISTINCT country) DESC
 LIMIT 5) as L JOIN Movie USING (movieID);
 
--- Most popular shooting locations for Westerns
+-- 5. Most popular shooting locations for Westerns
 -- Results: Santa Clarita, Tuscon, LA, Mexico City, Santa Fe, Guadalupe, Monterrey, Victorille, Gallup, Prescott
 SELECT Genre, City, Country, count(city) as 'Number of Films'
 FROM (SELECT * FROM Genre WHERE genre = 'western') as W JOIN ShootingLocation USING (movieID)
@@ -51,7 +51,7 @@ LIMIT 10;
 
 -- Queries about genres
 
--- Top 3 most popular genres per decade
+-- 6. Top 3 most popular genres per decade
 WITH MovieDecades AS (SELECT movieID, title, FLOOR(year / 10)*10 AS decade
         FROM Movie),
         GenreDecades AS (SELECT M.movieID, M.title, M.decade, G.genre
@@ -66,7 +66,7 @@ SELECT Decade, Genre, Count as 'Number of Films'
 FROM GenreRank
 WHERE Rank <= 3 AND Decade IS NOT NULL;
 
--- Which genres have changed the most from the Old Hollywood era (pre-1970) to contemporary times (>= 1970)?
+-- 7. Which genres have changed the most from the Old Hollywood era (pre-1970) to contemporary times (>= 1970)?
 -- Results: 
 -- Genres that have increased most in production: 1) Animation +65% , 2) Horror +61%, 3) Documentary +61%, 4) Biography +53%, 5) Thriller +53%
 -- Genres that have decreased most in production: 1) Film-noirs -100%, 2) Westerns -84%, 3) Musicals -57%, 4) War films -45%, 5) Adventure films -26%
@@ -88,7 +88,7 @@ FROM (SELECT Genre, O.Percentage as 'OldPercentage', IFNULL(M.Percentage, 0) as 
 ORDER BY (NewPercentage-OldPercentage)/(OldPercentage + NewPercentage)*100 ASC
 LIMIT 5);
 
--- Directors who directed the most of each genre
+-- 8. Directors who directed the most of each genre
 -- Preview of results: Mystery - Alfred Hitchcock (22), Film-Noir - Fritz Lang (17), Sci-Fi: Ishiro Honda (33)
 With DirectorCount AS (SELECT Genre, personID, count(personID) as count
         FROM Genre JOIN DirectedBy USING (movieID)
@@ -99,7 +99,7 @@ With DirectorCount AS (SELECT Genre, personID, count(personID) as count
 SELECT Genre, Name, Count as 'Number of Films Directed'
 From MaxGenreCount JOIN Person USING (personID);
 
--- Actor who acted the most of each genre
+-- 9. Actor who acted the most of each genre
 -- Preview of results:  Film-Noir - Humphrey Bogart (27), Biography: Anthony Hopkins (16)
 With ActorCount AS (SELECT Genre, personID, count(personID) as count
         FROM Genre JOIN Starring USING (movieID)
@@ -110,7 +110,7 @@ With ActorCount AS (SELECT Genre, personID, count(personID) as count
 SELECT Genre, Name, Count as 'Number of Starring Films'
 From MaxGenreCount JOIN Person USING (personID);
 
--- Top ten most popular genres
+-- 10. Top ten most popular genres
 -- Result: 1) Drama, 2) Documentary, 3) Comedy, 4) Action, 5) Romance
 -- 6) Thriller, 7) Crime, 8) Horror, 9) Adventure, 10) Familly
 SELECT Genre, count(genre) as 'Number of films'
@@ -121,7 +121,7 @@ LIMIT 10;
 
 -- Queries related to film rankings
 
--- Best ranked film per genre
+-- 11. Best ranked film per genre
 -- Preview of results: Horror: Psycho (1960), Musical: Singin' in the Rain (1952), 
 -- Sport: Raging Bull (1980), Animation: Up (2009), Crime: The Godfather (1972)
 With RankGenres as (SELECT * FROM RankDetailed JOIN Genre USING (movieID))
@@ -130,7 +130,7 @@ FROM RankGenres as R1
 WHERE rank = (SELECT min(rank) FROM RankGenres as R2 WHERE R1.genre = R2.genre)
 GROUP BY Genre;
 
--- Top 20 directors with most appearances in greatest film list (along with their greatest film)
+-- 12. Top 20 directors with most appearances in greatest film list (along with their greatest film)
 -- Preview of Results: 1) John-Luc Godard (Breathless), 2) John Ford (The Searchers), 3) ALfred Hitchcock (Vertigo)
 With TopDirectors AS (SELECT personID, movieID, rank, title, Year
 FROM RankDetailed JOIN DirectedBy USING (movieID)),
@@ -143,7 +143,7 @@ SELECT Name, Count as 'Number of ranked films', Title as 'Greatest film', Year a
 FROM (SELECT * FROM TopDirectors JOIN TopDirectorsCount USING (personID)) AS T1
 WHERE rank = (SELECT min(rank) FROM (SELECT * FROM TopDirectors JOIN TopDirectorsCount USING (personID)) AS T2 WHERE T1.personID = T2.personID);
 
--- Top 20 actors with most appearances in greatest film list (along with their greatest film)
+-- 13. Top 20 actors with most appearances in greatest film list (along with their greatest film)
 -- Preview of results: 1) Robert De Niro (Taxi Driver), 2) John Wayne (The Searchers), 3) James Stewart (Vertigo), 4) Cary Grant (North by Northwest)
 With TopActors AS (SELECT personID, movieID, rank, title, Year
 FROM RankDetailed JOIN Starring USING (movieID)),
@@ -156,7 +156,7 @@ SELECT Name, Count as 'Number of ranked films', Title as 'Greatest film', Year a
 FROM (SELECT * FROM TopActors JOIN TopActorsCount USING (personID)) AS T1
 WHERE rank = (SELECT min(rank) FROM (SELECT * FROM TopActors JOIN TopActorsCount USING (personID)) AS T2 WHERE T1.personID = T2.personID);
 
--- Top ranked film per decade
+-- 14. Top ranked film per decade
 -- Results: 1910: Intolerance, 1920: Sunrise, 1930: The Rules of the Game, 1940: Citizen Kane,
 -- 1950: Vertigo, 1960: 2001: A Space Odyssey, 1970: The Godfather, 1980: Raging Bull, 1990: Pulp Fiction,
 -- 2000: In the Mood for Love, 2010: The Tree of Life
@@ -165,13 +165,13 @@ FROM RankDetailed as R1
 WHERE rank = (SELECT min(rank) FROM RankDetailed as R2 WHERE R1.decade = R2.decade)
 GROUP BY Decade;
 
--- Top ranked film per year (if represented in ranking)
+-- 15. Top ranked film per year (if represented in ranking)
 SELECT Year, Title
 FROM RankDetailed as R1
 WHERE rank = (SELECT min(rank) FROM RankDetailed as R2 WHERE R1.year = R2.year)
 GROUP BY year;
 
--- Directors with most appearances in greatest film list per decade
+-- 16. Directors with most appearances in greatest film list per decade
 With DirectorCount AS (SELECT * FROM (SELECT decade, personID, count(DISTINCT movieID) as Count
 FROM RankDetailed JOIN DirectedBy USING (movieID)
 GROUP BY decade, personID) as A JOIN Person USING (personID)),
@@ -181,7 +181,7 @@ SELECT Decade, Name, Count
 FROM DirectorRank
 WHERE Position <= 2 AND COUNT >= 2;
 
--- Actors with most appearances in greatest film list per decade
+-- 17. Actors with most appearances in greatest film list per decade
 With ActorCount AS (SELECT * FROM (SELECT decade, personID, count(DISTINCT movieID) as Count
 FROM RankDetailed JOIN Starring USING (movieID)
 GROUP BY decade, personID) as A JOIN Person USING (personID)),
@@ -193,7 +193,7 @@ WHERE Position <= 3 AND COUNT >= 2;
 
 -- Queries about budget/revenue
 
--- Top ten movies in revenue (adjusted)
+-- 18. Top ten movies in revenue (adjusted)
 -- Preview of results: 1) Avatar, 2) Star Wars: A New Hope, 3) Titanic, 4) The Exorcist, 5) Jaws
 SELECT Title, Year, CONCAT('$', CAST(Revenue AS VARCHAR(20))) AS 'Revenue', CONCAT('$', CAST(Revenue_adj AS VARCHAR(20))) AS 'Adjusted Revenue'
 FROM Movie
@@ -201,7 +201,7 @@ WHERE revenue IS NOT NULL AND revenue_adj IS NOT NULL
 ORDER BY revenue_adj desc
 LIMIT 10;
 
--- Top ten movies by profit (not adjusted)
+-- 19. Top ten movies by profit (not adjusted)
 -- Preview of results: 1) Avatar, 2) Star Wars: A New Hope, 3) Titanic, 4) Jurassic World, 5) Furious 7
 SELECT Title, Year, CONCAT('$', CAST(Budget AS VARCHAR(20))) AS 'Budget', CONCAT('$', CAST(Revenue AS VARCHAR(20))) AS 'Revenue', CONCAT('$',CAST(revenue - budget AS VARCHAR(20))) AS Gross
 FROM Movie
@@ -209,7 +209,7 @@ WHERE revenue IS NOT NULL AND budget IS NOT NULL
 ORDER BY revenue - budget desc
 LIMIT 10;
 
--- Top ten movies who made the higher returns on investment
+-- 20. Top ten movies who made the higher returns on investment
 -- Preview of results: 1) Paranormal Activity (2007), 2) The Blair Witch Project (1999), 3) Eraserhead (1977), 4) Pink Flamingos (1972), 5) Super Size Me (2004)
 SELECT Title, Year, CONCAT('$', CAST(Budget AS VARCHAR(20))) AS 'Budget', CONCAT('$', CAST(Revenue AS VARCHAR(20))) AS 'Revenue', CONCAT(CAST(((revenue - budget)/budget*100) AS VARCHAR(20)),'%') AS 'Return on Investment'
 FROM Movie
@@ -217,17 +217,17 @@ WHERE revenue IS NOT NULL AND budget > 1000
 ORDER BY (revenue - budget)/(budget) desc
 LIMIT 10;
         
--- Top 10 Box Office Bombs
+-- 21. Top 10 Box Office Bombs
 -- Results: 1) Chaos (2005), 2) 5 Days of War (2011), 3) Foodfight! (2011), 4) The Good Night (2007), 5) Cherry 2000 (1987)
 With PercentProfit AS (SELECT title as Title, movieID, year as Year, budget as Budget, revenue as Revenue, ((revenue / budget) * 100) AS Percent
         FROM Movie
         WHERE budget > 10000 AND revenue > 10000)
-SELECT Title, Year, Budget, Revenue, CONCAT(CAST(Percent AS VARCHAR(5)), '%') AS 'Percent of Budget Grossed'
+SELECT Title, Year, Budget, Revenue, CONCAT(CAST(Percent AS VARCHAR(10)), '%') AS 'Percent of Budget Grossed'
 FROM PercentProfit
 ORDER BY percent ASC
 LIMIT 10;
 
--- Revenue per year
+-- 22. Revenue per year
 SELECT M.year As Year, CONCAT('$',CAST((SELECT SUM(revenue_adj) AS profit 
         FROM Movie AS M1
         WHERE M1.year = M.year AND M1.revenue_adj IS NOT NULL) AS VARCHAR(20))) as Revenue
@@ -235,7 +235,7 @@ FROM Movie AS M
 WHERE M.revenue_adj IS NOT NULL
 GROUP BY M.year;
 
--- Revenue per decade
+-- 23. Revenue per decade
 WITH MovieDecades AS (SELECT movieID, revenue, FLOOR(year / 10) AS decade
         FROM Movie
         WHERE revenue IS NOT NULL)
@@ -245,7 +245,7 @@ SELECT M1.decade * 10 as Decade, CONCAT('$',CAST((SELECT SUM(M.revenue)
 FROM MovieDecades AS M1
 GROUP BY M1.decade;
 
--- Common Roles/Names
+-- 24. Common Roles/Character Names
 -- Results (first 5): Narrator (7676), Anna (1981), Maria (1794), David (1963), Mother (1546)
 SELECT Role, COUNT(role) AS 'Number of appearances'
 FROM Starring
@@ -254,8 +254,8 @@ ORDER BY COUNT(role) desc
 LIMIT 10;
 
 
--- These have obscure and/or uninteresting results, so should probably be scrapped. 
--- Kept here for reference just in case.
+-- These have obscure and/or uninteresting results, so will probably be scrapped. 
+-- Kept here for future reference just in case.
 
 -- Directors who starred in the greatest number of their own movies
 WITH TopSelfStarring AS (SELECT DISTINCT personID, count(DISTINCT movieID) as Count
@@ -291,10 +291,10 @@ WHERE city != ''
 GROUP BY Genre, city
 ORDER BY count(city) DESC;
 
--- Top keywords for genres, not very insightful
-SELECT Genre, keyword, count(keyword)
-FROM Genre JOIN Keyword USING (movieID)
-WHERE keyword != ''
-GROUP BY Genre, keyword
-ORDER BY count(keyword) DESC;
+-- Top keywords for genres, not very insightful [Keyword table removed]
+-- SELECT Genre, keyword, count(keyword)
+-- FROM Genre JOIN Keyword USING (movieID)
+-- WHERE keyword != ''
+-- GROUP BY Genre, keyword
+-- ORDER BY count(keyword) DESC;
 

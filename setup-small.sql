@@ -20,13 +20,6 @@ CREATE TABLE Genre (
   FOREIGN KEY (movieID) REFERENCES Movie(movieID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TABLE Keyword (
-  movieID   VARCHAR(15),
-  keyword   VARCHAR(100),
-  PRIMARY KEY(movieID, keyword),
-  FOREIGN KEY(movieID) REFERENCES Movie(movieID) ON DELETE CASCADE ON UPDATE CASCADE
-);
-
 CREATE TABLE ShootingLocation (
   movieID   VARCHAR(15),
   locationListing  VARCHAR(500),
@@ -75,11 +68,6 @@ LINES TERMINATED BY '\r\n'
 IGNORE 1 LINES;
 
 LOAD DATA LOCAL INFILE 'C:/Users/andyc/Documents/Johns Hopkins/Spring 2021/Databases/project/filmDB/finaldata/genre-small.txt' INTO TABLE Genre
-FIELDS TERMINATED BY '\t'
-LINES TERMINATED BY '\r\n'
-IGNORE 1 LINES;
-
-LOAD DATA LOCAL INFILE 'C:/Users/andyc/Documents/Johns Hopkins/Spring 2021/Databases/project/filmDB/finaldata/keywords-small.txt' INTO TABLE Keyword
 FIELDS TERMINATED BY '\t'
 LINES TERMINATED BY '\r\n'
 IGNORE 1 LINES;
