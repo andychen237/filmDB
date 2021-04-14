@@ -42,7 +42,7 @@ LIMIT 5) as L JOIN Movie USING (movieID);
 
 -- 5. Most popular shooting locations for Westerns
 -- Results: Santa Clarita, Tuscon, LA, Mexico City, Santa Fe, Guadalupe, Monterrey, Victorille, Gallup, Prescott
-SELECT Genre, City, Country, count(city) as 'Number of Films'
+SELECT Genre as 'Genre', City, Country, count(city) as 'Number of Films'
 FROM (SELECT * FROM Genre WHERE genre = 'western') as W JOIN ShootingLocation USING (movieID)
 WHERE city != ''
 GROUP BY Genre, city
@@ -297,4 +297,3 @@ ORDER BY count(city) DESC;
 -- WHERE keyword != ''
 -- GROUP BY Genre, keyword
 -- ORDER BY count(keyword) DESC;
-

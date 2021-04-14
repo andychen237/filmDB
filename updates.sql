@@ -12,7 +12,7 @@ INSERT INTO Starring VALUES
 DELETE FROM Starring
 WHERE movieID = 'tt0034583' AND personID = 'nm0000048' AND role = 'Ugarte';
 
--- adding a made up movie into database, Genre is Film-Noir, director is Nicholas Ray, cast member is Montgomery Clift
+-- adding a made up movie into database; Genre is Film-Noir, director is Nicholas Ray, cast member is Montgomery Clift
 INSERT INTO Movie VALUES
 ('tt381038132','Fake Movie','1944','90', '1002', '1000.4','14320.2','202420.3');
 INSERT INTO Genre VALUES
@@ -43,7 +43,7 @@ WHERE movieID = 'tt381038132' OR movieID = 'tt3487328';
 DELETE FROM Movie
 WHERE movieID = 'tt3487328';
 
--- insert new person into DB, add him as director to Chungking Express and a cast member in The King of Comedy
+-- insert new person into DB; add him as director to Chungking Express and a cast member in The King of Comedy
 INSERT INTO Person VALUES
 ('nm420666911','Andy Chen','1999');
 INSERT INTO DirectedBy VALUES
