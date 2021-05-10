@@ -3,26 +3,56 @@
 <html>
    <body>
 
+	<h2> Display trends in genre production and distribution over time</h2>
+	<form action="GenreTrends.php" method="post">
+		<select name="Genre">
+			<script>
+				var genres = new Array("Film-noir","Western","Horror","Musical","Animation","Sci-Fi","Drama","Documentary","Comedy",
+		"Action","Romance","Thriller","Crime","Adventure","Mystery","Fantasy","History","War");
+				for(i=0; i<genres.length; i++) {  
+					document.write('<option value="' + genres[i] +'">' + genres[i] + '</option>');
+				}
+			</script>
+		</select>
+		<input type="submit">
+	</form>
+	<br/><br/>
+
 	<h2> Display director's top grossing films</h2>
-	<form action="dirtopgross.php" method="post">
+	<form action="DirectorFilmographyRevenue.php" method="post">
 		Name: <input type="text" name="Name"> <br/>
 		<input type="submit">
 	</form>
 	<br/><br/>
 
 	<h2> Display actors's top grossing films</h2>
-	<form action="actortopgross.php" method="post">
+	<form action="ActorFilmographyRevenue.php" method="post">
 		Name: <input type="text" name="Name"> <br/>
 		<input type="submit">
 	</form>
 	<br/><br/>
 
-	<h2> Display most popular genres</h2>
-	<form action="topgenres.php" method="post">
-		Number of genres (limit 20): <input type="text" name="Number"> <br/>
+	<h2> Display top shooting locations for a genre</h2>
+	<form action="GenreTopLocations.php" method="post">
+		<select name="Genre">
+			<script>
+				var genres = new Array("Film-noir","Western","Horror","Musical","Animation","Sci-Fi","Drama","Documentary","Comedy",
+		"Action","Romance","Thriller","Crime","Adventure","Mystery","Fantasy","History","War");
+				for(i=0; i<genres.length; i++) {  
+					document.write('<option value="' + genres[i] +'">' + genres[i] + '</option>');
+				}
+			</script>
+		</select>
 		<input type="submit">
 	</form>
 	<br/><br/>
 
+
+	<h2> Display most popular genres</h2>
+	<form action="TopNGenres.php" method="post">
+		Number of genres (limit 20): <input type="text" name="Number"> <br/>
+		<input type="submit">
+	</form>
+	<br/><br/>
    </body>
 </html>

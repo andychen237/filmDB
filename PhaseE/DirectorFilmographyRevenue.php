@@ -34,7 +34,9 @@ if ($stmt = $conn->prepare("CALL DirectorFilmographyRevenue(?)")) {
             }
 	    //Free the result set returned from the query, since we've stored data in array
         $result->free_result();
-        }
+        } else {
+		echo "Please make sure your input is valid.";
+	}
     } else {
 	    echo "Please input a director.";
     }
