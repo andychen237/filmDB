@@ -2,7 +2,7 @@ DELIMITER //
 
 DROP PROCEDURE IF EXISTS TopFiveDecade //
 
-CREATE PROCEDURE TopFiveDecade(IN startYear year)
+CREATE PROCEDURE TopFiveDecade(IN startYear VARCHAR(4))
 BEGIN
         SELECT title, year, revenue, revenue_adj
 	FROM Movie
