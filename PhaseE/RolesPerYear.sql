@@ -14,7 +14,7 @@ BEGIN
  	   SELECT year, COUNT(year)
  	   FROM Acted
  	   GROUP BY year
- 	   ORDER BY COUNT(year) desc;
+ 	   ORDER BY year ASC;
 	END IF;
 END; //
 
