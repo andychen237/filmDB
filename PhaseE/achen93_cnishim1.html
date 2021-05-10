@@ -117,11 +117,24 @@
 	<br/><br/>
 	   
 	<h2> Display Top Five Films of a Decade by Revenue</h2>
-	<form action= "TopFiveDecade.php" method="post">
-		Year: <input type="text" name="Year"> <br/>
-		<input type="submit">
-	</form>
-	<br/><br/>
+        <form action="TopFiveDecade.php" method="post">
+                 <select name="year">
+                   <script>
+                     var start = 1890;
+                     var end = new Date().getFullYear();
+                     var options = "";
+                     var year = start;
+                     var i = 0;
+                     while (year < end) {
+                         document.write('<option value="' + i +'">' + year + '</option>');
+                         year += 10;
+                         i++;
+                     }
+                   </script>
+                </select>
+                <input type="submit">
+        </form>
+        <br/><br/>
 
    </body>
 </html>
