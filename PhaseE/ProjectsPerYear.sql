@@ -22,7 +22,7 @@ BEGIN
 	    SELECT year, COUNT(year) AS projects
  	    FROM AllJobs
  	    GROUP BY year
- 	    ORDER BY projects desc;
+ 	    ORDER BY year ASC;
 	 END IF;
 END; //
 
