@@ -1,4 +1,4 @@
-<!-- Returns the top genres, with the number of genres to display specified by user -->
+<!-- Returns the top shooting locations for a given genre -->
 <?php
 
 //Open a connection to dbase server

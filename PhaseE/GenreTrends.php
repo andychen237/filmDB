@@ -1,4 +1,4 @@
-<!-- Returns the top genres, with the number of genres to display specified by user -->
+<!-- Returns trends of a genre (film production output and distribution of overall films over time) -->
 <?php
 
 //Open a connection to dbase server

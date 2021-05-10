@@ -1,4 +1,4 @@
-<!-- Returns the top grossing films of an actor -->
+<!-- Returns the top grossing films of a director -->
 <?php
 
 //Open a connection to dbase server
