@@ -7,12 +7,8 @@ include 'open.php';
 //Construct an array in which we'll store our data
 $dataPoints = array();
 
-//Prepare a statement to be executed later
-if ($stmt = $conn->prepare("SELECT genre, count(genre)".
-                "FROM Genre ".
-                "GROUP BY Genre ".
-                "ORDER BY count(Genre) DESC ".
-                "LIMIT ? ;")) {
+//Prepare a statement to be executed later,
+if ($stmt = $conn->prepare("CALL topNgenres(?)")) {
 
     //Bind a variable to the missing data value denoted by ? above
     $stmt->bind_param("i", $Number);
@@ -40,7 +36,7 @@ if ($stmt = $conn->prepare("SELECT genre, count(genre)".
             echo "Please input an integer from 1 to 20.";
         }
     } else {
-	    echo "Please input an integer value of genres to display.";
+	    echo "Please input the number of genres to display.";
     }
 }
 
@@ -57,7 +53,7 @@ $conn->close();
 		window.onload = function() {
 			var chart = new CanvasJS.Chart("chartContainer", {
 				animationEnabled: true,
-				theme: "dark1", // "light1", "light2", "dark1", "dark2"
+				theme: "light1", // "light1", "light2", "dark1", "dark2"
 				title: {
 					text: "Top genres"
 				},

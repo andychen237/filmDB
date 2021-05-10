@@ -8,17 +8,7 @@ include 'open.php';
 $dataPoints = array();
 
 //Prepare a statement to be executed later
-if ($stmt = $conn->prepare("WITH queryPersonID AS (SELECT personID ".
-			   "FROM Person ".
-			   "WHERE name = ? ".
-			   "LIMIT 1), ".
-			   "ActorFilmography AS (SELECT DISTINCT movieID ".
-			   "FROM Starring JOIN queryPersonID USING (personID)) ".
-			   "SELECT title, revenue_adj as revenue ".
-			   "FROM Movie JOIN ActorFilmography USING (movieID) ".
-		           "WHERE revenue_adj > 0 ".
-			   "ORDER BY revenue_adj DESC;")) {
-
+if ($stmt = $conn->prepare("CALL ActorFilmographyRevenue(?)")) {
     //Bind a variable to the missing data value denoted by ? above
     $stmt->bind_param("s", $Name);
         

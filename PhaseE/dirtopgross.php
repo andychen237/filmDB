@@ -1,4 +1,4 @@
-<!-- Returns the top grossing films of a director -->
+<!-- Returns the top grossing films of an actor -->
 <?php
 
 //Open a connection to dbase server
@@ -8,17 +8,7 @@ include 'open.php';
 $dataPoints = array();
 
 //Prepare a statement to be executed later
-if ($stmt = $conn->prepare("WITH queryPersonID AS (SELECT personID ".
-			   "FROM Person ".
-			   "WHERE name = ? ".
-			   "LIMIT 1), ".
-			   "DirectorFilmography AS (SELECT DISTINCT movieID ".
-			   "FROM DirectedBy JOIN queryPersonID USING (personID)) ".
-			   "SELECT title, revenue_adj as revenue ".
-			   "FROM Movie JOIN DirectorFilmography USING (movieID) ".
-		           "WHERE revenue_adj > 0 ".
-			   "ORDER BY revenue_adj DESC;")) {
-
+if ($stmt = $conn->prepare("CALL DirectorFilmographyRevenue(?)")) {
     //Bind a variable to the missing data value denoted by ? above
     $stmt->bind_param("s", $Name);
         
@@ -63,7 +53,7 @@ $conn->close();
 		window.onload = function() {
 			var chart = new CanvasJS.Chart("chartContainer", {
 				animationEnabled: true,
-				theme: "dark2", // "light1", "light2", "dark1", "dark2"
+				theme: "dark1", // "light1", "light2", "dark1", "dark2"
 				title: {
 					text: "Top grossing films"
 				},
