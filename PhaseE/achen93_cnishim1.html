@@ -3,6 +3,38 @@
 <html>
    <body>
 
+	<h2> Display most acclaimed stars within a genre</h2>
+	<h3> Most acclaimed stars are those that appear the most in the <a href="http://www.theyshootpictures.com/">greatest films ranking</a> within a given genre</h3>
+	<form action="GenreStars.php" method="post">
+		<select name="Genre">
+			<script>
+				var genres = new Array("Film-noir","Western","Horror","Musical","Animation","Sci-Fi","Drama","Documentary","Comedy",
+		"Action","Romance","Thriller","Crime","Adventure","Mystery","Fantasy","History","War");
+				for(i=0; i<genres.length; i++) {  
+					document.write('<option value="' + genres[i] +'">' + genres[i] + '</option>');
+				}
+			</script>
+		</select>
+		<input type="submit">
+	</form>
+	<br/><br/>
+
+	<h2> Display most acclaimed directors within a genre</h2>
+	<h3> Most acclaimed stars are directors that direct the most in the <a href="http://www.theyshootpictures.com/">greatest films ranking</a> within a given genre</h3>
+	<form action="GenreDirectors.php" method="post">
+		<select name="Genre">
+			<script>
+				var genres = new Array("Film-noir","Western","Horror","Musical","Animation","Sci-Fi","Drama","Documentary","Comedy",
+		"Action","Romance","Thriller","Crime","Adventure","Mystery","Fantasy","History","War");
+				for(i=0; i<genres.length; i++) {  
+					document.write('<option value="' + genres[i] +'">' + genres[i] + '</option>');
+				}
+			</script>
+		</select>
+		<input type="submit">
+	</form>
+	<br/><br/>
+
 	<h2> Display trends in genre production and distribution over time</h2>
 	<form action="GenreTrends.php" method="post">
 		<select name="Genre">
@@ -46,14 +78,6 @@
 		<input type="submit">
 	</form>
 	<br/><br/>
-
-
-	<h2> Display most popular genres</h2>
-	<form action="TopNGenres.php" method="post">
-		Number of genres (limit 20): <input type="text" name="Number"> <br/>
-		<input type="submit">
-	</form>
-	<br/><br/>
 	   
 	<h2> Display films released within a range of years</h2>
 	<form action="FilmsYearRange.php" method="post">
@@ -62,5 +86,13 @@
 		<input type="submit">
 	</form>
 	<br/><br/>
+
+	<h2> Display most popular genres</h2>
+	<form action="TopNGenres.php" method="post">
+		Number of genres (limit 20): <input type="text" name="Number"> <br/>
+		<input type="submit">
+	</form>
+	<br/><br/>
+
    </body>
 </html>
