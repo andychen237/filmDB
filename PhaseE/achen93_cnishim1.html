@@ -222,5 +222,28 @@
 	</form>
 	<br/><br/>
 
+	<h1>Contribute to our database!</h1>
+	<h2>Insert a starring role.</h2>
+	<h3>Our database currently only has the principal/top billing actors. Help populate our database with more supporting cast 
+		members below! Please use the imdbID's for the movie and the person by looking up both on IMDB and copying the ID from the web address 
+		(movie ID's start with 'tt', and people ID's start with 'nm').</h3>
+	<form action="insertRole.php" method="post">
+		Movie imdbID: <input type="text" name="MovieID"> <br/>
+		Person imdbID: <input type="text" name="PersonID"> <br/>
+		Role: <input type="text" name="Role"> <br/>
+		<input type="submit">
+	</form>
+	<br/><br/>
+
+	<h2>Delete a starring role.</h2>
+	<h3>Use this to fix errors in castings or to fix possible mistakes from the insertion above. Please see instructions above for finding the appropriate ID.</h3>
+	<form action="deleteRole.php" method="post">
+		Movie imdbID: <input type="text" name="MovieID"> <br/>
+		Person imdbID: <input type="text" name="PersonID"> <br/>
+		Role: <input type="text" name="Role"> <br/>
+		<input type="submit">
+	</form>
+	<br/><br/>
+
    </body>
 </html>
