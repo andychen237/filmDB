@@ -121,6 +121,28 @@
 		<input type="submit">
 	</form>
 	<br/><br/>
+	   
+	<h2> Display top five grossing films of a year</h2>
+        <form action="TopFiveYear.php" method="post">
+                Year: <input type="text" name="Year"> <br/>
+                <input type="submit">
+        </form>
+        <br/><br/>
+
+        <h2> Display top five grossing films in a genre</h2>
+        <form action="TopFiveGenre.php" method="post">
+                <select name="Genre">
+                        <script>
+                                var genres = new Array("Western","Horror","Musical","Animation","Sci-Fi","Drama","Documentary","Comedy",
+                "Action","Romance","Thriller","Crime","Adventure","Mystery","Fantasy","History","War");
+                                for(i=0; i<genres.length; i++) {
+                                        document.write('<option value="' + genres[i] +'">' + genres[i] + '</option>');
+                                }
+                        </script>
+                </select>
+                <input type="submit">
+        </form>
+        <br/><br/>
 
 	<h2> Display most popular genres</h2>
 	<form action="TopNGenres.php" method="post">
