@@ -34,7 +34,7 @@ if ($stmt = $conn->prepare("CALL deleteRole(?, ?, ?)")) {
 		//Free the result set returned from the query, since we've stored data in array
         $result->free_result();
     	} else {
-			echo "We could not execute this insertion. Please make sure your inputs are valid";
+			echo "We could not execute this deletion. Please make sure your inputs are valid";
 		}
     } else {
 	    echo "You are missing an input value.";
