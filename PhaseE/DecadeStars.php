@@ -60,7 +60,7 @@ $conn->close();
 					title: "Number of appearances"
 				},
 				axisX: {
-					title: "Director"
+					title: "Star"
 				},
 				data: [{
 					type: "column",

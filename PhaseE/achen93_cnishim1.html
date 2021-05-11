@@ -41,8 +41,8 @@
 			 <select name="Decade">
 			    <script>
 				 	var year = 1920;
-				 	var end = new Date().getFullYear();
-				 	while (year < end) {
+				 	var end = 2010;
+				 	while (year <= end) {
 						document.write('<option value="' + year +'">' + year + '</option>');
 						year += 10;
 				 	}
@@ -58,8 +58,8 @@
 			 <select name="Decade">
 			    <script>
 				 	var year = 1920;
-				 	var end = new Date().getFullYear();
-				 	while (year < end) {
+				 	var end = 2010;
+				 	while (year <= end) {
 						document.write('<option value="' + year +'">' + year + '</option>');
 						year += 10;
 				 	}
@@ -110,9 +110,9 @@
 	<form action="TopFiveDecade.php" method="post">
 		<select name="Year">
 			<script>
-				 var year = 1890;
-				 var end = new Date().getFullYear();
-				 while (year < end) {
+				 var year = 1950;
+				 var end = 2010;
+				 while (year <= end) {
 					document.write('<option value="' + year +'">' + year + '</option>');
 					year += 10;
 				 }
@@ -165,27 +165,6 @@
 		<input type="submit">
 	</form>
 	<br/><br/>
- 	   
-	<h2> Display Top Five Films of a Decade by Revenue</h2>
-        <form action="TopFiveDecade.php" method="post">
-                 <select name="year">
-                   <script>
-                     var start = 1890;
-                     var end = new Date().getFullYear();
-                     var options = "";
-                     var year = start;
-                     var i = 0;
-                     while (year < end) {
-                         document.write('<option value="' + i +'">' + year + '</option>');
-                         year += 10;
-                         i++;
-                     }
-                   </script>
-                </select>
-                <input type="submit">
-        </form>
-        <br/><br/>
->>>>>>> dccc708023cf8878a2d4c322cfe7e931fff75d83
 
    </body>
 </html>
