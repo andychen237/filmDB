@@ -123,41 +123,28 @@
 	<br/><br/>
 	   
 	<h2> Display top five grossing films of a year</h2>
-        <form action="TopFiveYear.php" method="post">
-                Year: <input type="text" name="Year"> <br/>
-                <input type="submit">
-        </form>
-        <br/><br/>
+    <form action="TopFiveYear.php" method="post">
+            Year: <input type="text" name="Year"> <br/>
+            <input type="submit">
+    </form>
+    <br/><br/>
 
-        <h2> Display top five grossing films in a genre</h2>
-        <form action="TopFiveGenre.php" method="post">
-                <select name="Genre">
-                        <script>
-                                var genres = new Array("Western","Horror","Musical","Animation","Sci-Fi","Drama","Documentary","Comedy",
+    <h2> Display top five grossing films in a genre</h2>
+    <form action="TopFiveGenre.php" method="post">
+            <select name="Genre">
+                    <script>
+                            var genres = new Array("Western","Horror","Musical","Animation","Sci-Fi","Drama","Documentary","Comedy",
                 "Action","Romance","Thriller","Crime","Adventure","Mystery","Fantasy","History","War");
-                                for(i=0; i<genres.length; i++) {
-                                        document.write('<option value="' + genres[i] +'">' + genres[i] + '</option>');
-                                }
-                        </script>
-                </select>
-                <input type="submit">
-        </form>
-        <br/><br/>
+                            for(i=0; i<genres.length; i++) {
+                                    document.write('<option value="' + genres[i] +'">' + genres[i] + '</option>');
+                            }
+                    </script>
+            </select>
+            <input type="submit">
+    </form>
+    <br/><br/>
 
-	<h2> Display top grossing films for a genre</h2>
-	<form action="GenreTopGrossing.php" method="post">
-		Genre: <select name="Genre">
-			<script>
-				var genres = new Array("Western","Horror","Musical","Animation","Sci-Fi","Drama","Documentary","Comedy",
-		"Action","Romance","Thriller","Crime","Adventure","Mystery","Fantasy","History","War");
-				for(i=0; i<genres.length; i++) {  
-					document.write('<option value="' + genres[i] +'">' + genres[i] + '</option>');
-				}
-			</script>
-		</select>
-		<input type="submit">
-	</form>
-	<br/><br/>
+
 
 	<h2> Display top ranked films of a decade</h2>
 	<form action="DecadeRank.php" method="post">
@@ -176,7 +163,7 @@
 	<br/><br/>
 
 	
-	<h2> Display top grossing films of a genre</h2>
+	<h2> Display top ranked films of a genre</h2>
 	<form action="GenreRank.php" method="post">
 		Genre: <select name="Genre">
 			<script>
