@@ -6,7 +6,7 @@
 	<h2> Display most acclaimed stars within a genre</h2>
 	<h3> Most acclaimed stars are those who appear the most in the <a href="http://www.theyshootpictures.com/">greatest films ranking</a> within a given genre</h3>
 	<form action="GenreStars.php" method="post">
-		<select name="Genre">
+		Genre: <select name="Genre">
 			<script>
 				var genres = new Array("Film-noir","Western","Horror","Musical","Animation","Sci-Fi","Drama","Documentary","Comedy",
 		"Action","Romance","Thriller","Crime","Adventure","Mystery","Fantasy","History","War");
@@ -22,9 +22,9 @@
 	<h2> Display most acclaimed directors within a genre</h2>
 	<h3> Most acclaimed directors are those who direct the most in the <a href="http://www.theyshootpictures.com/">greatest films ranking</a> within a given genre</h3>
 	<form action="GenreDirectors.php" method="post">
-		<select name="Genre">
+		Genre: <select name="Genre">
 			<script>
-				var genres = new Array("Film-noir","Western","Horror","Musical","Animation","Sci-Fi","Drama","Documentary","Comedy",
+				var genres = new Array("Horror","Film-noir","Western","Musical","Animation","Sci-Fi","Drama","Documentary","Comedy",
 		"Action","Romance","Thriller","Crime","Adventure","Mystery","Fantasy","History","War");
 				for(i=0; i<genres.length; i++) {  
 					document.write('<option value="' + genres[i] +'">' + genres[i] + '</option>');
@@ -38,7 +38,7 @@
 	<h2> Display most acclaimed stars within a decade</h2>
 	<h3> Most acclaimed stars are those who appear the most in the <a href="http://www.theyshootpictures.com/">greatest films ranking</a> within a given decade</h3>
 	<form action="DecadeStars.php" method="post">
-			 <select name="Decade">
+			 Decade: <select name="Decade">
 			    <script>
 				 	var year = 1920;
 				 	var end = 2010;
@@ -55,7 +55,7 @@
 	<h2> Display most acclaimed directors within a decade</h2>
 	<h3> Most acclaimed directors are those who direct the most in the <a href="http://www.theyshootpictures.com/">greatest films ranking</a> within a given decade</h3>
 	<form action="DecadeDirectors.php" method="post">
-			 <select name="Decade">
+			 Decade: <select name="Decade">
 			    <script>
 				 	var year = 1920;
 				 	var end = 2010;
@@ -71,9 +71,9 @@
 
 	<h2> Display trends in genre production and distribution over time</h2>
 	<form action="GenreTrends.php" method="post">
-		<select name="Genre">
+		Genre: <select name="Genre">
 			<script>
-				var genres = new Array("Film-noir","Western","Horror","Musical","Animation","Sci-Fi","Drama","Documentary","Comedy",
+				var genres = new Array("Western","Film-noir","Horror","Musical","Animation","Sci-Fi","Drama","Documentary","Comedy",
 		"Action","Romance","Thriller","Crime","Adventure","Mystery","Fantasy","History","War");
 				for(i=0; i<genres.length; i++) {  
 					document.write('<option value="' + genres[i] +'">' + genres[i] + '</option>');
@@ -108,7 +108,7 @@
 
 	<h2> Display top five grossing films of a decade</h2>
 	<form action="TopFiveDecade.php" method="post">
-		<select name="Year">
+		Decade: <select name="Year">
 			<script>
 				 var year = 1950;
 				 var end = 2010;
@@ -116,6 +116,53 @@
 					document.write('<option value="' + year +'">' + year + '</option>');
 					year += 10;
 				 }
+			</script>
+		</select>
+		<input type="submit">
+	</form>
+	<br/><br/>
+
+	<h2> Display top grossing films for a genre</h2>
+	<form action="GenreTopGrossing.php" method="post">
+		Genre: <select name="Genre">
+			<script>
+				var genres = new Array("Western","Horror","Musical","Animation","Sci-Fi","Drama","Documentary","Comedy",
+		"Action","Romance","Thriller","Crime","Adventure","Mystery","Fantasy","History","War");
+				for(i=0; i<genres.length; i++) {  
+					document.write('<option value="' + genres[i] +'">' + genres[i] + '</option>');
+				}
+			</script>
+		</select>
+		<input type="submit">
+	</form>
+	<br/><br/>
+
+	<h2> Display top ranked films of a decade</h2>
+	<form action="DecadeRank.php" method="post">
+		Decade: <select name="Decade">
+			<script>
+				 var year = 1920;
+				 var end = 2010;
+				 while (year <= end) {
+					document.write('<option value="' + year +'">' + year + '</option>');
+					year += 10;
+				 }
+			</script>
+		</select>
+		<input type="submit">
+	</form>
+	<br/><br/>
+
+	
+	<h2> Display top grossing films of a genre</h2>
+	<form action="GenreRank.php" method="post">
+		Genre: <select name="Genre">
+			<script>
+				var genres = new Array("Western","Horror","Musical","Animation","Sci-Fi","Drama","Documentary","Comedy",
+		"Action","Romance","Thriller","Crime","Adventure","Mystery","Fantasy","History","War");
+				for(i=0; i<genres.length; i++) {  
+					document.write('<option value="' + genres[i] +'">' + genres[i] + '</option>');
+				}
 			</script>
 		</select>
 		<input type="submit">
@@ -131,7 +178,7 @@
 
 	<h2> Display top shooting locations for a genre</h2>
 	<form action="GenreTopLocations.php" method="post">
-		<select name="Genre">
+		Genre: <select name="Genre">
 			<script>
 				var genres = new Array("Film-noir","Western","Horror","Musical","Animation","Sci-Fi","Drama","Documentary","Comedy",
 		"Action","Romance","Thriller","Crime","Adventure","Mystery","Fantasy","History","War");
