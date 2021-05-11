@@ -14,5 +14,5 @@ BEGIN
         LIMIT 5;
 END; //
 
-DELIMTER ;
+DELIMITER ;
 
