@@ -34,7 +34,7 @@ if ($stmt = $conn->prepare("CALL TopFiveDecade(?)")) {
 		echo "<td>".$row["title"]."</td>";
 		echo "<td>".$row["year"]."</td>";
 		echo "<td>".number_format($row["revenue"], 2)."</td>";
-		echo "<td>".numbere_format($row["revenue_adj"], 2)."</td>";
+		echo "<td>".number_format($row["revenue_adj"], 2)."</td>";
 		echo "<tr>";
 	    }
 	    echo "<table>";
