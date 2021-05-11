@@ -2,7 +2,7 @@ DELIMITER //
 
 DROP PROCEDURE IF EXISTS TopFiveGenre //
 
-CREATE PROCEDURE TopFiveYear(IN inputGenre VARCHAR(100))
+CREATE PROCEDURE TopFiveGenre(IN inputGenre VARCHAR(100))
 BEGIN
 	WITH foundGenre AS (SELECT movieID
 	     FROM Genre
