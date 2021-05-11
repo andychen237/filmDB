@@ -1,0 +1,15 @@
+Andy Chen, achen93
+Curtis Nishimoto, cnishim1
+
+Addressing feedback:
+
+Thankfully the special characters are not an issue when querying or displaying results. When querying using them,
+the queries still execute (for example searching up directors 'Gaspar Noé' and 'Luis Buñuel').
+Furthermore, special characters were displayed fine on the interface; an example
+is looking up the top shooting locations of Westerns, of which one city is Nuevo León, Mexico which shows up fine.
+So though on the MariaDB interface, they're parsed wrongly
+when retrieving the results, when displaying them on our interface, they work fine. So 
+we decided this was servicable.
+
+We decided to keep dollars as well, since on canvasJS, they separate into commas, so it's more interpretable and user-friendly
+than the MariaDB unformatted outputs.
