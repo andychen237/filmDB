@@ -127,7 +127,7 @@ BEGIN
              LIMIT 50)
         SELECT *
         FROM TopGross
-		WHERE revenue_adj > 0 AND revenue > 0
+		WHERE revenue_adj IS NOT NULL AND revenue_adj > 0
         ORDER BY revenue_adj DESC, title ASC;
 END; //
 

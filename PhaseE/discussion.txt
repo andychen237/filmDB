@@ -79,13 +79,13 @@ have been tested.
 
 – Successes - 
 Definitely getting the data was a massive feat. As described in the earlier phases, data was super scattered,
-unclean, and super large that it made it difficult to clean since a multitude of errors could arise (which did happen). The thought
+unclean, and super large which it made it difficult to clean since a multitude of errors could arise (which did happen). The thought
 of joining tables with millions of tuples was also daunting, but eventually through data cleaning and other fixes,
 somehow all the setting up and queries were not just working, but also running in a few seconds AND with no errors.
-In relation to finding data, as of yet there has not really been much information on shooting locations and no database
+In relation to finding data, as of yet, there has not really been much information on shooting locations and no database
 seems to exist online where you could query and find stats. So it seems, if we're not mistaken, this was a novel
 idea and something that can be extended to public use one day.
-Lastly, just the statistics and insights garned through the queries chosen on our interface is super interesting and worth noting,
+Lastly, just the statistics and insights garned through the queries chosen on our interface are super interesting and worth noting,
 especially for any film buff who's interesting in film rankings, trends, popularity, etc.
 
 – Known Issues - The most apparent issue is the lack of budget information. We could not find a complete one
