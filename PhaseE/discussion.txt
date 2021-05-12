@@ -1,0 +1,102 @@
+– Members - Andy Chen, achen93
+Curtis Nishimoto, cnishim1
+
+– Modifications - We expanded the list of questions based on the availability of data we had
+(we couldn't find easily clean and interpretable data on music soundtracks and kill counts, 
+so we had to scrap that and focus more on shooting location and ranking data, which were
+new sources of data we found along the project). 
+
+– Process (FROM EARLIER PHASES) - All the data cleaning was done through Python using pandas dataframes. 
+Feel free to refer to this link for the exact code: 
+https://github.com/andychen237/filmDB/blob/main/databases_cleanup.ipynb
+
+For movie, genre, directedby, person and starring, the information was obtained from
+https://datasets.imdbws.com/, all being tsv files.
+
+Specifically, movies was read from the title.basics data from IMDB. 
+It was filtered so the titleType category was movie and the isAdult boolean was 0 (indicating non-adult films).
+Then these categories, along with the originalTitle and the endYear (usually reserved 
+for TV shows) were removed and the remaining desired attributes were renamed to fit
+the schema specified in Phase C. 
+
+For genres, the Genre category in Movies was split using commas to denote each individual 
+genre a movie can have and any null values were dropped.
+
+After dropping genres from the original movie data, budget/revenue and keywords data was read through a kaggle dataset
+(https://www.kaggle.com/juzershakir/tmdb-movies-dataset; csv file). The budget was merged with movie 
+to fill in any values of budget/revenue that were available in the dataset. Missing values were simply
+treated as null values. 
+
+For keywords, a similar procedure was done, the keywords were merged with the movie
+data so only the movies that have keywords are represented and the movies represented were restricted to those within the movie data.
+Then similar to genres, the keywords were split using '|' to denote a tuple for each keyword a film can have.
+Duplicates were dropped. 
+
+For the person data, the data was taken from name.basics from IMDB. The deathYear, primaryProfession, and knownForTitles
+were dropped, and the columns were renamed to fit the attributes specified in Phase B.
+
+Starring was taken from tile.principals from IMDB. For starring, the only categories of interest were those that were
+actors or actresses, so other professions were filtered out. Since actors can play multiple roles and they were listed as a list
+under the 'characters' category, the string was fixed to be comma separated (removing quotes between character names and brackets),
+and then split to different rows for each character an actor played. Rows with roles with NULL values were also dropped.
+
+For directedby, the data was taken from title.crew from IMDB. Writers were filtered out and only movies represented in the original
+movie title were kept (done through a merge with 'movies'). For movies with multiple directors (separated by commas), they were
+split into different rows.
+
+Since there were around 17 million people represented in the IMDB data, this was filtered to just only contain
+the people who were in directedby or starring to reduce the size. This reduced the file size from 300mb to around 
+20mb and from 17 million rows to 600k rows. 
+
+For movie locations, the data was obtained from https://github.com/HindrikStegenga/IMDB-Location.list-Parser/blob/master/movies.csv.
+The csv file was converted from using commas as separators to using '|' as separators to prevent confusion since addresses included
+commas. The data was merged with movies to only include the movies filtered through the source data. Since the location listings were
+inconsistent (varied from having city, address, and/or country, etc), the location listing was separated into four components: raw address, a city, state, and a country
+using geocoding python packages (geopy) to have consistency and to represent the information that is actually available for each movie for better
+comparison. Existing tabs in the location listings were also removed to prevent conflict with the tsv of the result file.
+
+For ranking data, the data was exported as a csv file from an IMDB list that displayed the ranking from a site theyshootpictures.com (https://www.imdb.com/list/ls084497023/).
+This was done to get the IMDB ID's. Then columns were renamed and only the ID and list position were kept. Shorts were also removed, since feature lengths are
+the focus of this project. 
+ 
+Any blank or null values were made to be defined as '\N' to prevent type errors.
+
+The Keyword table was removed from the database because after doing queries related to most frequent
+keywords per decade and also per genre, most keywords were not particularly insightful and were very
+generic keywords like "relationship" or "comedy", which did not bring much insight to trends, especially
+given the limited range of keyword representation and film representation within the keywords in the data.
+Thus, most queries are focused on answering questions regarding shooting location, budget, actors, genres, etc. 
+
+Some of the budget/revenue
+data was incorrect, but to prevent having to manually check 10,000 entries in the data, anomalies were filtered
+out using the WHERE clause to constrain the results to more suitable and sensible ones. 
+
+We also decided to make a person_condensed.txt as this reduced the original person.txt by a couple million tuples to only
+represent people of interest that are in Starring and DirectedBy (which reduced import time from ~30 mins to ~5 mins).
+Also, there were issues found using the .txt files on Mac, but changing the extension to .csv and removing '\r' 
+from LINES TERMINATED BY fixed this problem. Otherwise, the .txt files should work fine on Windows, and both instances 
+have been tested.
+
+– Successes - 
+Definitely getting the data was a massive feat. As described in the earlier phases, data was super scattered,
+unclean, and super large that it made it difficult to clean since a multitude of errors could arise (which did happen). The thought
+of joining tables with millions of tuples was also daunting, but eventually through data cleaning and other fixes,
+somehow all the setting up and queries were not just working, but also running in a few seconds AND with no errors.
+In relation to finding data, as of yet there has not really been much information on shooting locations and no database
+seems to exist online where you could query databases and find stats, so it seems, if we're not mistaken, this was a novel
+idea and something that can be extended to public use one day.
+Lastly, just the statistics and insights garned through the queries chosen on our interface is super interesting and worth noting,
+especially for any film geek who's interesting in film rankings, trends, popularity, etc.
+
+– Known Issues - The most apparent issue is the lack of budget information. We could not find a complete one
+as IMDB does not offer it as exportable data, so we had to reply on external datasets that only included a fraction
+of the movies that are represented in the database. This does affect the accuracy of our query results, but there
+was not much we could do to prevent this. So definitely keep this in mind when querying! (In addition, other data sources
+are incomplete, so in turn, that could also cause some incomplete results)
+
+– Extensions - We definitely add to add maps of shooting locations, but could not find time to do this in the time alloted.
+This would be even cooler if we were able to find a way to connect to Google image search to find pictures of some locations
+in the time the movie was filmed. So just more functionality using the locations and geotagging/Google Maps would be super neat
+and definitely something unpredecented since there doesn't seem to be a database for shooting locations online.
+Further, adding in movie posters to results would really make the visualizations nice, in addition to adding movie shots,
+video scenes, and pictures of the actors/directors too. 
