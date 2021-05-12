@@ -83,19 +83,19 @@ unclean, and super large that it made it difficult to clean since a multitude of
 of joining tables with millions of tuples was also daunting, but eventually through data cleaning and other fixes,
 somehow all the setting up and queries were not just working, but also running in a few seconds AND with no errors.
 In relation to finding data, as of yet there has not really been much information on shooting locations and no database
-seems to exist online where you could query databases and find stats, so it seems, if we're not mistaken, this was a novel
+seems to exist online where you could query and find stats. So it seems, if we're not mistaken, this was a novel
 idea and something that can be extended to public use one day.
 Lastly, just the statistics and insights garned through the queries chosen on our interface is super interesting and worth noting,
-especially for any film geek who's interesting in film rankings, trends, popularity, etc.
+especially for any film buff who's interesting in film rankings, trends, popularity, etc.
 
 – Known Issues - The most apparent issue is the lack of budget information. We could not find a complete one
 as IMDB does not offer it as exportable data, so we had to reply on external datasets that only included a fraction
-of the movies that are represented in the database. This does affect the accuracy of our query results, but there
+of the movies that are represented in the database. This does affect the completeness/accuracy of our query results, but there
 was not much we could do to prevent this. So definitely keep this in mind when querying! (In addition, other data sources
 are incomplete, so in turn, that could also cause some incomplete results)
 
-– Extensions - We definitely add to add maps of shooting locations, but could not find time to do this in the time alloted.
-This would be even cooler if we were able to find a way to connect to Google image search to find pictures of some locations
+– Extensions - We definitely wanted to add maps of shooting locations, but could not find time to do this in the time alloted.
+This would be even cooler if we were able to find a way to connect to Google Maps/Image search to find pictures of some locations
 in the time the movie was filmed. So just more functionality using the locations and geotagging/Google Maps would be super neat
 and definitely something unpredecented since there doesn't seem to be a database for shooting locations online.
 Further, adding in movie posters to results would really make the visualizations nice, in addition to adding movie shots,
