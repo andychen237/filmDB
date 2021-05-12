@@ -127,7 +127,8 @@ BEGIN
              LIMIT 50)
         SELECT *
         FROM TopGross
-        ORDER BY year ASC, revenue_adj DESC, title ASC;
+		WHERE revenue_adj > 0 AND revenue > 0
+        ORDER BY revenue_adj DESC, title ASC;
 END; //
 
 DELIMITER ;
