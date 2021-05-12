@@ -1,0 +1,20 @@
+movieID	personID	role
+tt0034583	nm0000007	Rick Blaine
+tt0034583	nm0000006	Ilsa Lund
+tt0035446	nm0001479	Maria Tura
+tt0039689	nm0000053	Jeff
+tt0039689	nm0000018	Whit
+tt0042593	nm0000007	Dixon Steele
+tt0050825	nm0000018	Col. Dax
+tt0053291	nm0000348	Joe
+tt0053291	nm0000348	Josephine
+tt0053291	nm0000054	Sugar Kane Kowalczyk
+tt0053291	nm0000493	Jerry
+tt0053604	nm0000493	C.C. Baxter
+tt0053604	nm0000511	Fran Kubelik
+tt0062136	nm0004244	Monsieur Hulot
+tt0064116	nm0000020	Frank
+tt0074958	nm0001159	Diana Christensen
+tt0078788	nm0000008	Colonel Walter E. Kurtz
+tt0087884	nm0001765	Travis Henderson
+tt0166924	nm0915208	Diane Selwyn

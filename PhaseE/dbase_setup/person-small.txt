@@ -1,0 +1,33 @@
+personID	name	birthYear
+nm0000007	Humphrey Bogart	1899
+nm0000006	Ingrid Bergman	1915
+nm0001479	Carole Lombard	1908
+nm0000053	Robert Mitchum	1917
+nm0000018	Kirk Douglas	1916
+nm0002108	Gloria Grahame	1923
+nm0000348	Tony Curtis	1925
+nm0000054	Marilyn Monroe	1926
+nm0000493	Jack Lemmon	1925
+nm0000511	Shirley MacLaine	1934
+nm0000020	Henry Fonda	1905
+nm0000314	Charles Bronson	1921
+nm0001159	Faye Dunaway	1941
+nm0000008	Marlon Brando	1924
+nm0001765	Harry Dean Stanton	1926
+nm0000176	Nastassja Kinski	1961
+nm0437580	Takeshi Kaneshiro	1973
+nm0915208	Naomi Watts	1968
+nm0002031	Michael Curtiz	1886
+nm0523932	Ernst Lubitsch	1892
+nm0869664	Jacques Tourneur	1904
+nm0712947	Nicholas Ray	1911
+nm0000040	Stanley Kubrick	1928
+nm0000697	Billy Wilder	1906
+nm0004244	Jacques Tati	1907
+nm0001466	Sergio Leone	1929
+nm0001486	Sidney Lumet	1924
+nm0000338	Francis Ford Coppola	1939
+nm0000694	Wim Wenders	1945
+nm0939182	Kar-Wai Wong	1956
+nm0000186	David Lynch	1946
+nm0945981	Edward Yang	1947
