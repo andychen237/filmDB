@@ -197,6 +197,7 @@ END; //
 
 DELIMITER ;
 
+
 -- GenreTopGrossing.sql
 
 DELIMITER //

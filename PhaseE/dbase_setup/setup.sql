@@ -62,63 +62,37 @@ CREATE TABLE Ranking (
   FOREIGN KEY(movieID) REFERENCES Movie(movieID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-LOAD DATA LOCAL INFILE 'C:/Users/andyc/Documents/Johns Hopkins/Spring 2021/Databases/project/filmDB/finaldata/movie.txt' INTO TABLE Movie
+LOAD DATA LOCAL INFILE 'C:/Users/andyc/Documents/Johns Hopkins/Spring 2021/Databases/project/filmDB/PhaseE/dbase_setup/movie.txt' INTO TABLE Movie
 FIELDS TERMINATED BY '\t'
 LINES TERMINATED BY '\r\n'
 IGNORE 1 LINES;
 
-LOAD DATA LOCAL INFILE 'C:/Users/andyc/Documents/Johns Hopkins/Spring 2021/Databases/project/filmDB/finaldata/genre.txt' INTO TABLE Genre
+LOAD DATA LOCAL INFILE 'C:/Users/andyc/Documents/Johns Hopkins/Spring 2021/Databases/project/filmDB/PhaseE/dbase_setup/genre.txt' INTO TABLE Genre
 FIELDS TERMINATED BY '\t'
 LINES TERMINATED BY '\r\n'
 IGNORE 1 LINES;
 
-LOAD DATA LOCAL INFILE 'C:/Users/andyc/Documents/Johns Hopkins/Spring 2021/Databases/project/filmDB/finaldata/person_condensed.txt' INTO TABLE Person
+LOAD DATA LOCAL INFILE 'C:/Users/andyc/Documents/Johns Hopkins/Spring 2021/Databases/project/filmDB/PhaseE/dbase_setup/person_condensed.txt' INTO TABLE Person
 FIELDS TERMINATED BY '\t'
 LINES TERMINATED BY '\r\n'
 IGNORE 1 LINES;
 
-LOAD DATA LOCAL INFILE 'C:/Users/andyc/Documents/Johns Hopkins/Spring 2021/Databases/project/filmDB/finaldata/directedby.txt' INTO TABLE DirectedBy
+LOAD DATA LOCAL INFILE 'C:/Users/andyc/Documents/Johns Hopkins/Spring 2021/Databases/project/filmDB/PhaseE/dbase_setup/directedby.txt' INTO TABLE DirectedBy
 FIELDS TERMINATED BY '\t'
 LINES TERMINATED BY '\r\n'
 IGNORE 1 LINES;
 
-LOAD DATA LOCAL INFILE 'C:/Users/andyc/Documents/Johns Hopkins/Spring 2021/Databases/project/filmDB/finaldata/starring.txt' INTO TABLE Starring
+LOAD DATA LOCAL INFILE 'C:/Users/andyc/Documents/Johns Hopkins/Spring 2021/Databases/project/filmDB/PhaseE/dbase_setup/starring.txt' INTO TABLE Starring
 FIELDS TERMINATED BY '\t'
 LINES TERMINATED BY '\r\n'
 IGNORE 1 LINES;
 
-LOAD DATA LOCAL INFILE 'C:/Users/andyc/Documents/Johns Hopkins/Spring 2021/Databases/project/filmDB/finaldata/shootinglocation.txt' INTO TABLE ShootingLocation
+LOAD DATA LOCAL INFILE 'C:/Users/andyc/Documents/Johns Hopkins/Spring 2021/Databases/project/filmDB/PhaseE/dbase_setup/shootinglocation.txt' INTO TABLE ShootingLocation
 FIELDS TERMINATED BY '\t'
 LINES TERMINATED BY '\r\n'
 IGNORE 1 LINES;
 
-LOAD DATA LOCAL INFILE 'C:/Users/andyc/Documents/Johns Hopkins/Spring 2021/Databases/project/filmDB/finaldata/ranking.txt' INTO TABLE Ranking
+LOAD DATA LOCAL INFILE 'C:/Users/andyc/Documents/Johns Hopkins/Spring 2021/Databases/project/filmDB/PhaseE/dbase_setup/ranking.txt' INTO TABLE Ranking
 FIELDS TERMINATED BY '\t'
 LINES TERMINATED BY '\r\n'
 IGNORE 1 LINES;
-
--- Stored procedures
-
--- ActorFilmographyRevenue.sql
-
-DELIMITER //
-
-DROP PROCEDURE IF EXISTS ActorFilmographyRevenue//
-
-CREATE PROCEDURE ActorFilmographyRevenue(IN inName VARCHAR(60))
-BEGIN
-        IF EXISTS(SELECT 1 FROM Person WHERE inName = Name) THEN
-                WITH queryPersonID AS (SELECT personID
-                FROM Person
-                WHERE name = inName
-                LIMIT 1),
-                ActorFilmography AS (SELECT DISTINCT movieID
-                FROM Starring JOIN queryPersonID USING (personID))
-                SELECT title, revenue_adj as revenue
-                FROM Movie JOIN ActorFilmography USING (movieID)
-                WHERE revenue_adj > 0
-                ORDER BY revenue_adj DESC;
-        END IF;
-END; //
-
-DELIMITER ;
